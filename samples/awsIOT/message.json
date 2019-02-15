@@ -1,0 +1,14 @@
+{
+    "arm": {
+        "host": "alarm control",
+        "device": "pi_alarm",
+        "type": "command",
+        "command": "arm"
+    },
+    "disarm": {
+        "host": "alarm control",
+        "device": "pi_alarm",
+        "type": "command",
+        "command": "disarm"
+    }
+}

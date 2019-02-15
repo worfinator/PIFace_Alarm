@@ -1,0 +1,46 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [{
+            "Effect": "Allow",
+            "Action": [
+                "iot:Publish",
+                "iot:Receive"
+            ],
+            "Resource": [
+                "arn:aws:iot:us-west-2:045622309762:topic/pi_alarm*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Resource": [
+                "arn:aws:iot:us-west-2:045622309762:topicfilter/pi_alarm",
+                "arn:aws:iot:us-west-2:045622309762:thing/pi_alarm*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iot:Connect"
+            ],
+            "Resource": [
+                "arn:aws:iot:us-west-2:045622309762:client/pi_alarm",
+                "arn:aws:iot:us-west-2:045622309762:client/alarm_app"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iot:GetThingShadow",
+                "iot:UpdateThingShadow",
+                "iot:DeleteThingShadow​",
+                "iot:*"
+            ],
+            "Resource": [
+                "arn:aws:iot:us-west-2:045622309762:thing/pi_alarm"
+            ]
+        }
+    ]
+}

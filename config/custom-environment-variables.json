@@ -1,0 +1,9 @@
+{
+    "API": {
+        "jwtPrivateKey": "pi_alarm_jwtPrivateKey"
+    },
+    "Pushover": {
+        "apiKey": "pi_alarm_poApiKey",
+        "userKey": "pi_alarm_poUserKey"
+    }
+}

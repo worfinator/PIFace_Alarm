@@ -1,0 +1,98 @@
+{
+    "desired": {
+        "alarm": {
+            "active": false,
+            "triggered": false,
+            "zones": {
+                "zone 1": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 2": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 3": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 4": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 5": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 6": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 7": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 8": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                }
+            }
+        }
+    },
+    "reported": {
+        "alarm": {
+            "active": false,
+            "triggered": false,
+            "zones": {
+                "zone 1": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 2": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 3": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 4": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 5": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 6": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 7": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                },
+                "zone 8": {
+                    "active": true,
+                    "motion": false,
+                    "triggered": false
+                }
+            }
+        }
+    }
+}

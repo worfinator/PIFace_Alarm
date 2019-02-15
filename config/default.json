@@ -1,0 +1,111 @@
+{
+    "Common": {
+        "app_name": "PI_Alarm",
+        "device": "pi_alarm",
+        "dateFormat": "DD/MM/YYYY HH:mm:ss"
+    },
+    "Pushover": {
+        "apiKey": "",
+        "userKey": "",
+        "sound": "persistent",
+        "priority": 1
+    },
+    "AWS": {
+        "connection": {
+            "keyPath": "certificates/ad3257b35e-private.pem.key",
+            "certPath": "certificates/ad3257b35e-certificate.pem.crt",
+            "caPath": "certificates/AmazonRootCA1.pem",
+            "clientId": "pi_alarm",
+            "host": "a1z0ml01vrxwtq-ats.iot.us-west-2.amazonaws.com"
+        },
+        "topic": "pi_alarm"
+    },
+    "API": {
+        "jwtPrivateKey": "",
+        "server": {
+            "port": 3000
+        }
+    },
+    "Alarm": {
+        "armDuration": 30000,
+        "buzzer": {
+            "alarmDuration": 30000,
+            "beepDuration": 250,
+            "beepPause": 500,
+            "beepFinal": 30000
+        },
+        "siren": {
+            "alarmDuration": 30000
+        },
+        "inputs": [{
+                "pin": 0,
+                "name": "Zone 1",
+                "type": "zone",
+                "event": "hilo",
+                "active": true
+            },
+            {
+                "pin": 1,
+                "name": "Zone 2",
+                "type": "zone",
+                "event": "hilo",
+                "active": true
+            },
+            {
+                "pin": 2,
+                "name": "Zone 3",
+                "type": "zone",
+                "event": "hilo",
+                "active": true
+            },
+            {
+                "pin": 3,
+                "name": "Zone 4",
+                "type": "zone",
+                "event": "hilo",
+                "active": true
+            },
+            {
+                "pin": 4,
+                "name": "Zone 5",
+                "type": "zone",
+                "event": "hilo",
+                "active": true
+            },
+            {
+                "pin": 5,
+                "name": "Zone 6",
+                "type": "zone",
+                "event": "hilo",
+                "active": true
+            },
+            {
+                "pin": 6,
+                "name": "Zone 7",
+                "type": "zone",
+                "event": "hilo",
+                "active": true
+            },
+            {
+                "pin": 7,
+                "name": "Zone 8",
+                "type": "zone",
+                "event": "hilo",
+                "active": true
+            }
+        ],
+        "outputs": [{
+                "pin": 0,
+                "name": "Buzzer 1",
+                "type": "buzzer",
+                "active": true
+            },
+            {
+                "pin": 1,
+                "name": "Siren 1",
+                "type": "siren",
+                "active": true
+            }
+        ]
+    }
+}
