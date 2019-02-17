@@ -6,7 +6,7 @@ PI_Alarm is a Raspberry PI node.js based alarm application utilising the PI_Face
 
 ## Installation
 
-Download and unpack this repository on the Raspberry PI device with the PI_Face Digital 2 board installed. This code will be dependant on the libaries installed from the node-pifacedigital package https://www.npmjs.com/package/node-pifacedigital. Make sure to follow the setup instructions listed on the node-pifacedigital readme, and enable the SPI functionality. once the node-pifacedigital libraries a installed you should then be able to use NPM to install the rest of the dependancies.
+Download and unpack this repository on the Raspberry PI device with the PI_Face Digital 2 board installed. This code will be dependant on the libraries installed from the node-pifacedigital package https://www.npmjs.com/package/node-pifacedigital. Make sure to follow the setup instructions listed on the [node-pifacedigital readme](https://www.npmjs.com/package/node-pifacedigital), and enable the SPI functionality. Once the node-pifacedigital libraries a installed you should then be able to use NPM to install the rest of the dependancies.
 
 ```bash
 $ npm install
@@ -15,6 +15,8 @@ $ npm install
 ## Configuration
 
 All config options are located within the [./config/default.json](./config/default.json) file
+
+## Environment Variables
 
 The following environment variables will need to be set on the Raspberry Pi device.
 
@@ -75,6 +77,10 @@ To disarm simply paste the "disarm" packet to the `pi_alarm` topic
         "type": "command",
         "command": "disarm"
  }`
+ 
+ ## Pushover notifications
+ 
+ This app uses the [Pushover](https://pushover.net/) notification API in order to send an alert when the Alarm is triggered. You will need to create an account and `pushover` application\API token and add the API and User key values to the [environment variables](#environment-variables). The Pushover client for mobile devices can be downloaded from the [App Store / Google Play](https://pushover.net/clients), and you will need to add you device to a group assigned to the application within Pushover, detailed information can be found [here](https://pushover.net/faq#overview-what)
  
  ## Run
  
