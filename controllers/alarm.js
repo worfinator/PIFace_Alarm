@@ -33,9 +33,7 @@ async function setAlarm(status) {
     // Human readable response
     status = alarm.active ? 'Enabled' : 'Disabled';
 
-    return new Promise((resolve, reject) => {
-        resolve(status);
-    });
+    return Promise.resolve(status);
 }
 
 function getStatus() {
@@ -187,9 +185,7 @@ async function _pingBuzzer() {
         await _toggleOutput('buzzers', true, alarmConfig.buzzer.beepDuration, false);
         await _pauseBuzzer();
     }
-    return new Promise((resolve, reject) => {
-        resolve(true);
-    });
+    return Promise.resolve(true);
 }
 
 async function _pauseBuzzer() {
@@ -215,9 +211,7 @@ async function _countDownBuzzer() {
         await _toggleOutput('buzzers', true, alarmConfig.buzzer.beepFinal, false);
     }
 
-    return new Promise((resolve, reject) => {
-        resolve(true);
-    });
+    return Promise.resolve(true);
 }
 
 async function _arm() {
@@ -248,35 +242,30 @@ async function _arm() {
 
     }
 
-    return new Promise((resolve, reject) => {
-        resolve(true);
-    });
+    return Promise.resolve(true);
 }
 
-function _disarm() {
-    return new Promise((resolve, reject) => {
-        if (alarm.active || alarm.arming) {
-            // stop any current alarms
-            alarm.active = false;
-            alarm.arming = false;
+async function _disarm() {
+    if (alarm.active || alarm.arming) {
+        // stop any current alarms
+        alarm.active = false;
+        alarm.arming = false;
 
-            _resetOutputs(false);
+        _resetOutputs(false);
 
-            logger.l(`Alarm disarmed`);
+        logger.l(`Alarm disarmed`);
 
-            awsIOT.device.notify("status", "disarmed");
-            awsIOT.device.updateShadow();
-        }
+        awsIOT.device.notify("status", "disarmed");
+        awsIOT.device.updateShadow();
+    }
 
-        resolve(true);
-    });
+    return Promise.resolve(true);
 }
 
 function _resetOutputs(display = true) {
-
-    var type = '';
-
     return new Promise((resolve, reject) => {
+        var type = '';
+
         for (var index in alarmConfig.outputs) {
             // reset output pin
             pi.set(alarmConfig.outputs[index].pin, 0);

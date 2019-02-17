@@ -15,9 +15,9 @@ function notify(message) {
         // 'message' is required. All other values are optional.
         message: message, // required
         title: `${commonConfig.app_name} notification`,
-        sound: commonConfig.sound,
-        device: commonConfig.device,
-        priority: commonConfig.priority
+        sound: pushoverConfig.sound,
+        device: pushoverConfig.device,
+        priority: pushoverConfig.priority
     };
 
     p.send(msg, function (err, result) {
