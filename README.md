@@ -40,18 +40,38 @@ The following environment variables will need to be set on the Raspberry Pi devi
 
 | Environment variable | Description |
 |----------------------|-------------|
-| `jwtPrivateKey` | this variable is mandatory and must be used to specify the key needed by the application to create JSON web tokens |
+| `pi_alarm_jwtPrivateKey` | this variable is mandatory and must be used to specify the key needed by the application to create JSON web tokens |
+| `pi_alarm_getTokenKey` | key used for authentication to initally retrieve JSON web token for use in API requests|
 | `pi_alarm_poApiKey` | Pushover API key - for push notification services|
 | `pi_alarm_poUserKey` | Pushover User Key - for push notification services |
 
 I recommend adding them to the `.bashrc` file of the account you will be using to run this node.js app. Replace `KeyString, PushoverAPIKey, and PushoverUserKey` with you own values.
 
 ```bash
-echo export "jwtPrivateKey=KeyString" >> .bashrc
+echo export "pi_alarm_jwtPrivateKey=KeyString" >> .bashrc
+echo export "pi_alarm_getTokenKey=KeyString" >> .bashrc
 echo export "pi_alarm_poApiKey=PushoverAPIKey" >> .bashrc
 echo export "pi_alarm_poUserKey=PushoverUserKey" >> .bashrc
 ```
 
+## API
+
+pi_alarm has a simple JSON API that provides 4 functions.
+
+| Endpoint | Function |
+| -------- | -------- |
+| `/api/alarm/status` | responds with the alarms status object |
+| '/api/alarm/on' | Arms the alarm system |
+| '/api/alarm/off' | Disarms the alarm system |
+| '/api/alarm/token/:key' | Returns a JSON Web Token to use in future requests |
+
+## Authentication
+
+The first time you run pi_alarm, you will need to retrieve a JSON Web Token in order to authenticate requests by calling...
+
+`http://<ip of your pi_alarm>/api/alarm/token/<getTokenKey>`
+
+Append this value as a header with the name `x-auth-token` when calling the `status, on, off` endpoints.
 
 ## AWS Messaging
 
