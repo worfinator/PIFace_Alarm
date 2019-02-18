@@ -25,7 +25,12 @@ router.get("/status/", auth.validate, async (req, res) => {
   res.send(status);
 });
 
-router.get("/token/", async (req, res) => {
+router.get("/token/", auth.validate, async (req, res) => {
+  const token = auth.getToken();
+  res.send(token);
+});
+
+router.get("/token/:key", auth.validate, async (req, res) => {
   const token = auth.getToken();
   res.send(token);
 });
