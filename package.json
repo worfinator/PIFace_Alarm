@@ -1,5 +1,5 @@
 {
-  "name": "pi_alarm",
+  "name": "piface_alarm",
   "version": "1.0.0",
   "description": "Simple Alarm System for the Raspberry PI using the PIFACE digital board",
   "main": "index.js",

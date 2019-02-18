@@ -7,7 +7,7 @@
                 "iot:Receive"
             ],
             "Resource": [
-                "arn:aws:iot:us-west-2:045622309762:topic/pi_alarm*"
+                "arn:aws:iot:us-west-2:045622309762:topic/piface_alarm*"
             ]
         },
         {
@@ -17,7 +17,7 @@
             ],
             "Resource": [
                 "arn:aws:iot:us-west-2:045622309762:topicfilter/pi_alarm",
-                "arn:aws:iot:us-west-2:045622309762:thing/pi_alarm*"
+                "arn:aws:iot:us-west-2:045622309762:thing/piface_alarm*"
             ]
         },
         {
@@ -26,7 +26,7 @@
                 "iot:Connect"
             ],
             "Resource": [
-                "arn:aws:iot:us-west-2:045622309762:client/pi_alarm",
+                "arn:aws:iot:us-west-2:045622309762:client/piface_alarm",
                 "arn:aws:iot:us-west-2:045622309762:client/alarm_app"
             ]
         },
@@ -39,7 +39,7 @@
                 "iot:*"
             ],
             "Resource": [
-                "arn:aws:iot:us-west-2:045622309762:thing/pi_alarm"
+                "arn:aws:iot:us-west-2:045622309762:thing/piface_alarm"
             ]
         }
     ]

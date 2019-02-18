@@ -1,10 +1,10 @@
 {
     "API": {
-        "jwtPrivateKey": "pi_alarm_jwtPrivateKey",
-        "getTokenKey": "pi_alarm_getTokenKey"
+        "jwtPrivateKey": "piface_alarm_jwtPrivateKey",
+        "getTokenKey": "piface_alarm_getTokenKey"
     },
     "Pushover": {
-        "apiKey": "pi_alarm_poApiKey",
-        "userKey": "pi_alarm_poUserKey"
+        "apiKey": "piface_alarm_poApiKey",
+        "userKey": "piface_alarm_poUserKey"
     }
 }

@@ -5,8 +5,8 @@ const commonConfig = config.get('Common');
 const pushoverConfig = config.get('Pushover');
 
 const p = new pushover({
-    user: 'uALQ4Xr62yaY8nrNznv3pLMuUPss3t',
-    token: 'ayo8srvhg125uz6jxm9rspa2hkgspf'
+    user: pushoverConfig.userKey,
+    token: pushoverConfig.apiKey
 });
 
 function notify(message) {

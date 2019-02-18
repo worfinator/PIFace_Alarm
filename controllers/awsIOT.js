@@ -31,7 +31,7 @@ device.on('connect', function () {
     const message = _createMessage("status", "connected");
 
     device.publish(awsConfig.topic, JSON.stringify(message));
-    device.publish('$aws/things/pi_alarm/shadow/update', JSON.stringify({
+    device.publish(shadowUpdate, JSON.stringify({
         "state": {
             "reported": {
                 "status": alarm.getStatus()
@@ -66,7 +66,7 @@ device.notify = function (type, value) {
 }
 
 device.updateShadow = function () {
-    device.publish('$aws/things/pi_alarm/shadow/update', JSON.stringify({
+    device.publish(shadowUpdate, JSON.stringify({
         "state": {
             "reported": {
                 "status": alarm.getStatus()

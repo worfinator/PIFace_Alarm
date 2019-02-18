@@ -1,7 +1,7 @@
 {
     "Common": {
-        "app_name": "PI_Alarm",
-        "device": "pi_alarm",
+        "app_name": "PIFace_Alarm",
+        "device": "piface_alarm",
         "dateFormat": "DD/MM/YYYY HH:mm:ss"
     },
     "Pushover": {
@@ -12,13 +12,13 @@
     },
     "AWS": {
         "connection": {
-            "keyPath": "certificates/ad3257b35e-private.pem.key",
-            "certPath": "certificates/ad3257b35e-certificate.pem.crt",
+            "keyPath": "certificates/1c8ee5dfd6-private.pem.key",
+            "certPath": "certificates/1c8ee5dfd6-certificate.pem.crt",
             "caPath": "certificates/AmazonRootCA1.pem",
-            "clientId": "pi_alarm",
+            "clientId": "piface_alarm",
             "host": "a1z0ml01vrxwtq-ats.iot.us-west-2.amazonaws.com"
         },
-        "topic": "pi_alarm"
+        "topic": "piface_alarm"
     },
     "API": {
         "jwtPrivateKey": "",
