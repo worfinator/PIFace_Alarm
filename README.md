@@ -16,6 +16,24 @@ $ npm install
 
 All config options are located within the [./config/default.json](./config/default.json) file
 
+You should only need to edit the `AWS` and `Alarm` objects with the config file, and add the required [environment variables](#environment-variables).
+
+The `AWS` object will need to contain your [certificate](#aws-messaging) information
+
+The `Alarm` object is where you can setup the [inputs](#inputs) and [outputs](#outputs) you require for you Alarm system. 
+
+## Inputs
+
+There are 8 `inputs` that are configured as alarm zones for use with a hardwired [PIR sensor](https://learn.adafruit.com/pir-passive-infrared-proximity-motion-sensor/how-pirs-work). The default is configured with an `event` type of `hilo` which correspondes to the `PIR` sensor `C/NC` events as descirbed [here](http://www.reuk.co.uk/wordpress/electronics/pir-sensor-circuits/). This means when the circuit is closed, and event is triggered. Change this to a value of `lohi` if your device triggers on the circuit being broken.
+
+## Outputs
+
+The `PI_Face Digital 2` 8 `outputs` that can be configure as either a `Buzzer` or `Siren`.
+
+A `Buzzer` is used during the `Arm` phase of the alarm to notify the user of the arm count down. It is also used during the Zone trigger phase when the alarm is active to notify the user within the area that an Alert is about to be triggered, should they wish to disarm the system.
+
+A `Siren` is used after the alarm `Buzzer` has completed its warnings, and the alarm is now sounding to alert anyone in the area that it has been triggered.
+
 ## Environment Variables
 
 The following environment variables will need to be set on the Raspberry Pi device.
@@ -37,7 +55,7 @@ echo export "pi_alarm_poUserKey=PushoverUserKey" >> .bashrc
 
 ## AWS Messaging
 
-pi_alarm uses [AWS IOT Core](https://aws.amazon.com/iot-core/) MQTT/Device Shadows in order to communicate events, and allow for remote control. You will need to create an AWS account and set up an IOT device/thing and copy the certifcates into the [./certificates](.certificates) directory and update the `AWS` object in the [./config/default.json](./config/default.json) file with the certifcate filenames, host, and clientId. Make sure you use the same clientId as the `device/thing` you created.
+pi_alarm uses [AWS IOT Core](https://aws.amazon.com/iot-core/) MQTT/Device Shadows in order to communicate events, and allow for remote control. You will need to create an AWS account and set up an IOT device/thing with the name `pi_alarm` and copy the certifcates into the [./certificates](.certificates) directory and update the `AWS` object in the [./config/default.json](./config/default.json) file with the certifcate filenames, host, and clientId. Make sure you use the same clientId as the `device/thing` you created `pi_alarm`.
 
 I recommend using a policy with iot:* and resources * for initial setup, and then locking it down once everything is running correctly.
 
