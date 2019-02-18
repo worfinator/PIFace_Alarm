@@ -1,6 +1,6 @@
 # PI_Alarm
 
-PI_Alarm is a Raspberry PI node.js based alarm application utilising the PI_Face Digital 2 interface. It allows for the configuration of 8 wired inputs (preferably PIR sensors), and 8 wired outputs that can be grouped as Buzzers (Sounded when arm or warning events are triggered) or Sirens (Sounded when alarm is trigged)
+PI_Alarm is a Raspberry PI node.js based alarm application utilising the [PI_Face Digital 2](http://www.piface.org.uk/products/piface_digital_2/) interface. It allows for the configuration of 8 wired inputs (preferably PIR sensors), and 8 wired outputs that can be grouped as Buzzers (Sounded when arm or warning events are triggered) or Sirens (Sounded when alarm is trigged)
 
 ![PI_Face Digital 2](icon.jpg)
 
