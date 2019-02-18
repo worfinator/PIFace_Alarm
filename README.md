@@ -1,6 +1,6 @@
-# PI_Alarm
+# PIFace_Alarm
 
-PI_Alarm is a Raspberry PI node.js based alarm application utilising the [PI_Face Digital 2](http://www.piface.org.uk/products/piface_digital_2/) interface. It allows for the configuration of 8 wired inputs (preferably PIR sensors), and 8 wired outputs that can be grouped as Buzzers (Sounded when arm or warning events are triggered) or Sirens (Sounded when alarm is trigged)
+PIFace_Alarm is a Raspberry PI node.js based alarm application utilising the [PI_Face Digital 2](http://www.piface.org.uk/products/piface_digital_2/) interface. It allows for the configuration of 8 wired inputs (preferably PIR sensors), and 8 wired outputs that can be grouped as Buzzers (Sounded when arm or warning events are triggered) or Sirens (Sounded when alarm is trigged)
 
 ![PI_Face Digital 2](icon.jpg)
 
@@ -40,23 +40,23 @@ The following environment variables will need to be set on the Raspberry Pi devi
 
 | Environment variable | Description |
 |----------------------|-------------|
-| `pi_alarm_jwtPrivateKey` | this variable is mandatory and must be used to specify the key needed by the application to create JSON web tokens |
-| `pi_alarm_getTokenKey` | key used for authentication to initally retrieve JSON web token for use in API requests|
-| `pi_alarm_poApiKey` | Pushover API key - for push notification services|
-| `pi_alarm_poUserKey` | Pushover User Key - for push notification services |
+| `piface_alarm_jwtPrivateKey` | this variable is mandatory and must be used to specify the key needed by the application to create JSON web tokens |
+| `piface_alarm_getTokenKey` | key used for authentication to initally retrieve JSON web token for use in API requests|
+| `piface_alarm_poApiKey` | Pushover API key - for push notification services|
+| `piface_alarm_poUserKey` | Pushover User Key - for push notification services |
 
 I recommend adding them to the `.bashrc` file of the account you will be using to run this node.js app. Replace `KeyString, PushoverAPIKey, and PushoverUserKey` with you own values.
 
 ```bash
-echo export "pi_alarm_jwtPrivateKey=KeyString" >> .bashrc
-echo export "pi_alarm_getTokenKey=KeyString" >> .bashrc
-echo export "pi_alarm_poApiKey=PushoverAPIKey" >> .bashrc
-echo export "pi_alarm_poUserKey=PushoverUserKey" >> .bashrc
+echo export "piface_alarm_jwtPrivateKey=KeyString" >> .bashrc
+echo export "piface_alarm_getTokenKey=KeyString" >> .bashrc
+echo export "piface_alarm_poApiKey=PushoverAPIKey" >> .bashrc
+echo export "piface_alarm_poUserKey=PushoverUserKey" >> .bashrc
 ```
 
 ## API
 
-pi_alarm has a simple JSON API that provides 4 functions.
+piface_alarm has a simple JSON API that provides 4 functions.
 
 | Endpoint | Function |
 | -------- | -------- |
@@ -67,15 +67,15 @@ pi_alarm has a simple JSON API that provides 4 functions.
 
 ## Authentication
 
-The first time you run pi_alarm, you will need to retrieve a JSON Web Token in order to authenticate requests by calling...
+The first time you run piface_alarm, you will need to retrieve a JSON Web Token in order to authenticate requests by calling...
 
-`http://<ip of your pi_alarm>/api/alarm/token/<getTokenKey>`
+`http://<ip of your piface_alarm>/api/alarm/token/<getTokenKey>`
 
 Append this value as a header with the name `x-auth-token` when calling the `status, on, off` endpoints.
 
 ## AWS Messaging
 
-pi_alarm uses [AWS IOT Core](https://aws.amazon.com/iot-core/) MQTT/Device Shadows in order to communicate events, and allow for remote control. You will need to create an AWS account and set up an IOT device/thing with the name `pi_alarm` and copy the certifcates into the [./certificates](.certificates) directory and update the `AWS` object in the [./config/default.json](./config/default.json) file with the certifcate filenames, host, and clientId. Make sure you use the same clientId as the `device/thing` you created `pi_alarm`.
+piface_alarm uses [AWS IOT Core](https://aws.amazon.com/iot-core/) MQTT/Device Shadows in order to communicate events, and allow for remote control. You will need to create an AWS account and set up an IOT device/thing with the name `piface_alarm` and copy the certifcates into the [./certificates](.certificates) directory and update the `AWS` object in the [./config/default.json](./config/default.json) file with the certifcate filenames, host, and clientId. Make sure you use the same clientId as the `device/thing` you created `piface_alarm`.
 
 I recommend using a policy with iot:* and resources * for initial setup, and then locking it down once everything is running correctly.
 
@@ -90,9 +90,9 @@ I recommend using a policy with iot:* and resources * for initial setup, and the
   ]
 }`
 
-There are example messages, a device shadow, and policy within the [./samples/awsIOT]](./samples/awsIOT) directory. The default is configured to use the pi_alarm topic for status events and control. 
+There are example messages, a device shadow, and policy within the [./samples/awsIOT]](./samples/awsIOT) directory. The default is configured to use the `piface_alarm` topic for status events and control. 
 
-Within the AWS IOT Core console, select the "Test" option to open the MQTT client. Then subscribe to the correct topic, the default is `pi_alarm`, you should the be able to see messages sent from the pi_alarm service.
+Within the AWS IOT Core console, select the "Test" option to open the MQTT client. Then subscribe to the correct topic, the default is `piface_alarm`, you should the be able to see messages sent from the piface_alarm service.
 
 ![MQTT Subscribe](./samples/Subscribe.GIF)
 
@@ -100,18 +100,18 @@ To set the alarm via aws copy the "arm" message from [./samples/awsIOT/message.j
 
 `{
         "host": "alarm control",
-        "device": "pi_alarm",
+        "device": "piface_alarm",
         "type": "command",
         "command": "arm"
  }`
     
 ![MQTT Arming](./samples/Arm.GIF)
 
-To disarm simply paste the "disarm" packet to the `pi_alarm` topic
+To disarm simply paste the "disarm" packet to the `piface_alarm` topic
 
 `{
         "host": "alarm control",
-        "device": "pi_alarm",
+        "device": "piface_alarm",
         "type": "command",
         "command": "disarm"
  }`
@@ -122,9 +122,9 @@ To disarm simply paste the "disarm" packet to the `pi_alarm` topic
  
  ## Run
  
- I recommend using the nodemon process to run this app, as any changes you make to the files will automatically restart the application while you are setting up and configuring `pi_alarm`
+ I recommend using the nodemon process to run this app, as any changes you make to the files will automatically restart the application while you are setting up and configuring `piface_alarm`
  
  ```bash
- cd pi_alarm
+ cd piface_alarm
  nodemon index.js
 ```
