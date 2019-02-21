@@ -1,20 +1,24 @@
-const config = require('config');
-const logger = require('./controllers/winston');
-const alarm = require('./controllers/alarm');
-const alarmAPI = require('./routes/alarm');
-const express = require('express');
+const config = require("config");
+const logger = require("./controllers/winston");
+const alarm = require("./controllers/alarm");
+const alarmAPI = require("./routes/alarm");
+const express = require("express");
 const app = express();
 
-apiConfig = config.get('API');
+apiConfig = config.get("API");
 
 // Need to exit if no Key available
 if (!apiConfig.jwtPrivateKey) {
-    console.error('FATAL ERROR: jwtPrivateKey is not defined');
-    process.exit(1);
+  console.error("FATAL ERROR: jwtPrivateKey is not defined");
+  process.exit(1);
 }
 
+// We use express for a simple API that
+// allows local control of the alarm for testing
+// AWSIoT MQTT will be what controls it in
+// the real world
 app.use(express.json());
-app.use('/api/alarm', alarmAPI);
+app.use("/api/alarm", alarmAPI);
 
 // Start the Server
 const port = process.env.PORT || apiConfig.server.port;
