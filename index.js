@@ -7,6 +7,18 @@ const app = express();
 
 apiConfig = config.get("API");
 
+// Errors to log file, this need to run
+// as a service and not stop
+process.on("uncaughtException", ex => {
+  console.log("Error exception");
+  logger.error(ex.message, ex);
+});
+
+// Get logger to handle
+process.on("unhandledRejection", ex => {
+  throw ex;
+});
+
 // Need to exit if no Key available
 if (!apiConfig.jwtPrivateKey) {
   console.error("FATAL ERROR: jwtPrivateKey is not defined");
